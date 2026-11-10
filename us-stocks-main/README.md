@@ -2,55 +2,114 @@
 
 🚀 **Live Demo:** https://us-stock-dashboard.streamlit.app
 
-Explore the live US Stock Market dashboard featuring machine learning-based stock predictions, technical indicators, risk analysis and stock rankings.
+A Python-based machine learning project that downloads historical US stock market data, engineers technical indicators, trains XGBoost classifiers to estimate the next trading day's direction, calculates financial risk metrics, ranks stocks, and displays results through an interactive Streamlit dashboard.
 
-A Python project that downloads historical US stock data, engineers technical indicators, trains XGBoost classifiers to estimate the next trading day's direction, computes risk metrics, ranks stocks, and displays results in a Streamlit dashboard.
+> **Disclaimer:** This is an educational machine-learning project, not financial advice. Predictions are uncertain, historical performance does not guarantee future results, and the included output CSVs/models may be stale.
 
-> **Disclaimer:** This is an educational machine-learning project, not financial advice. Predictions are uncertain, historical performance does not guarantee future results, and the included output CSVs/models may be stale. Do your own research before making financial decisions.
-
-## Features
+## ✨ Features
 
 - Historical market data from Yahoo Finance (`yfinance`) for AAPL, MSFT, NVDA, AMZN, GOOGL, META, TSLA, JPM, V, WMT, and market benchmarks.
-- Data cleaning and technical features (returns, moving averages, RSI, MACD, ATR, Bollinger Bands, volatility, and volume ratios).
-- XGBoost model training with a chronological 80/20 train/test split.
-- Prediction probabilities and risk statistics, including volatility, maximum drawdown, Sharpe ratio, historical VaR, beta, and ATR.
-- Streamlit dashboard for reviewing stock predictions and rankings.
+- Data cleaning and technical indicators including RSI, MACD, ATR, Bollinger Bands, moving averages, volatility, and volume ratios.
+- XGBoost model training with chronological 80/20 train/test splitting.
+- Stock prediction probabilities and UP/DOWN signals.
+- Risk analysis including volatility, maximum drawdown, Sharpe ratio, historical VaR, beta, and ATR.
+- Stock ranking based on prediction results.
+- Interactive Streamlit dashboard with historical charts and stock analysis.
 
-## Project structure
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Core programming |
+| Streamlit | Interactive dashboard |
+| XGBoost | Machine learning predictions |
+| Pandas | Data processing |
+| NumPy | Numerical computation |
+| Scikit-learn | Machine learning |
+| Yahoo Finance (yfinance) | Stock market data |
+| Matplotlib | Data visualization |
+| Seaborn | Statistical visualization |
+| TA | Technical indicators |
+| Joblib | Model serialization |
+
+## 📂 Project Structure
 
 ```text
-data/
-  raw/                    # Downloaded historical data
-  processed/              # Cleaned data and engineered features
-models/                   # Trained models and prediction/ranking CSVs
-outputs/                  # Backtest outputs and charts
-src/                      # Data pipeline, model, risk, ranking, and dashboard code
-requirements.txt
+US-Stock-Dashboard/
+│
+├── us-stocks-main/
+│   ├── .streamlit/
+│   ├── data/
+│   │   ├── raw/
+│   │   └── processed/
+│   ├── models/
+│   ├── outputs/
+│   ├── src/
+│   │   ├── dashboard.py
+│   │   ├── live_predict.py
+│   │   ├── realtime_data.py
+│   │   ├── risk_metrics.py
+│   │   └── stock_ranking.py
+│   ├── README.md
+│   └── requirements.txt
+│
+└── requirements.txt
 ```
 
-## Setup (Windows / macOS / Linux)
+## ⚙️ Installation and Setup
 
-Use Python 3.10 or 3.11 for broad compatibility with the scientific Python packages. From the project root:
+Use Python 3.10 or 3.11 for compatibility with scientific Python packages.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Vageesh2504/US-Stock-Dashboard-.git
+```
+
+Navigate into the project:
+
+```bash
+cd US-Stock-Dashboard-/us-stocks-main
+```
+
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-# macOS/Linux: source .venv/bin/activate
+```
+
+Activate the environment:
+
+**Windows:**
+```bash
+.venv\Scripts\activate
+```
+
+**macOS/Linux:**
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## Run the dashboard
+## ▶️ Run the Dashboard
+
+From the `us-stocks-main` directory:
 
 ```bash
-streamlit run us-stocks-main/src/dashboard.py
+streamlit run src/dashboard.py
 ```
 
-The dashboard reads `models/all_stock_predictions.csv`, processed historical data under `data/processed/final/`, and optionally `models/stock_rankings.csv`. The repository contains sample/generated outputs; refresh them by running the pipeline below.
+The dashboard reads prediction results from `models/all_stock_predictions.csv`, historical data from `data/processed/final/`, and optionally stock rankings from `models/stock_rankings.csv`.
 
-## Rebuild data and models
+## 🧠 Rebuild Data and Train Models
 
-Run these commands from the project root, in order:
+Run these commands from the `us-stocks-main` directory in order:
 
 ```bash
 python src/01_download_data.py
@@ -64,27 +123,30 @@ python src/14_predict_all_stocks.py
 python src/stock_ranking.py
 ```
 
-`yfinance` requires an internet connection and can return delayed, missing, or rate-limited data. The real-time data helper is `src/realtime_data.py`.
+Yahoo Finance requires an internet connection and may return delayed, missing, or rate-limited data.
 
-## Deployment on Streamlit Community Cloud
+## ☁️ Deployment – Streamlit Community Cloud
 
-1. Push this project to a GitHub repository.
-2. Open Streamlit Community Cloud and create an app from that repository.
-3. Set the main file path to us-stocks-main/src/dashboard.py.
-4. Ensure `requirements.txt`, the `models/` prediction CSV, and the historical CSV files used by the dashboard are committed.
+1. Push the project to GitHub.
+2. Open Streamlit Community Cloud.
+3. Connect your GitHub repository.
+4. Select the `main` branch.
+5. Set the main file path to:
 
-## Technology Stack
+```text
+us-stocks-main/src/dashboard.py
+```
 
-- Python
-- Streamlit
-- XGBoost
-- Pandas
-- NumPy
-- Scikit-learn
-- Yahoo Finance (yfinance)
-- Matplotlib
-- Seaborn
-- Technical Analysis (TA)
-6. Deploy. For a smaller repository, consider storing large generated data/model artifacts outside Git and downloading them during app startup.
+6. Ensure the root `requirements.txt`, prediction CSV files, trained models, and historical datasets are committed.
+7. Click Deploy.
 
-The dashboard is intended to display the latest prediction file available in the repository; it does not automatically retrain models on each page load.
+## 📊 Project Information
+
+- **Project:** US Stock Market ML Dashboard
+- **Domain:** Artificial Intelligence and Machine Learning
+- **Category:** Financial Data Analytics
+- **Machine Learning Algorithm:** XGBoost
+- **Deployment:** Streamlit Community Cloud
+- **Repository:** https://github.com/Vageesh2504/US-Stock-Dashboard-
+
+The dashboard displays the latest available prediction files. It does not automatically retrain models on every page load.
