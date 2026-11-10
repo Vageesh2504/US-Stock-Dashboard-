@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ## Run the dashboard
 
 ```bash
-streamlit run src/dashboard.py
+streamlit run us-stocks-main/src/dashboard.py
 ```
 
 The dashboard reads `models/all_stock_predictions.csv`, processed historical data under `data/processed/final/`, and optionally `models/stock_rankings.csv`. The repository contains sample/generated outputs; refresh them by running the pipeline below.
@@ -70,8 +70,21 @@ python src/stock_ranking.py
 
 1. Push this project to a GitHub repository.
 2. Open Streamlit Community Cloud and create an app from that repository.
-3. Set the main file path to `src/dashboard.py`.
+3. Set the main file path to us-stocks-main/src/dashboard.py.
 4. Ensure `requirements.txt`, the `models/` prediction CSV, and the historical CSV files used by the dashboard are committed.
-5. Deploy. For a smaller repository, consider storing large generated data/model artifacts outside Git and downloading them during app startup.
+
+## Technology Stack
+
+- Python
+- Streamlit
+- XGBoost
+- Pandas
+- NumPy
+- Scikit-learn
+- Yahoo Finance (yfinance)
+- Matplotlib
+- Seaborn
+- Technical Analysis (TA)
+6. Deploy. For a smaller repository, consider storing large generated data/model artifacts outside Git and downloading them during app startup.
 
 The dashboard is intended to display the latest prediction file available in the repository; it does not automatically retrain models on each page load.
