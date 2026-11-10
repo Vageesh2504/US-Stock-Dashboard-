@@ -1,4 +1,8 @@
-# US Stock Market ML Dashboard
+# 📈 US Stock Market ML Dashboard
+
+🚀 **Live Demo:** https://us-stock-dashboard.streamlit.app
+
+Explore the live US Stock Market dashboard featuring machine learning-based stock predictions, technical indicators, risk analysis and stock rankings.
 
 A Python project that downloads historical US stock data, engineers technical indicators, trains XGBoost classifiers to estimate the next trading day's direction, computes risk metrics, ranks stocks, and displays results in a Streamlit dashboard.
 
